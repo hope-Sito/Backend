@@ -1,0 +1,44 @@
+[tool.poetry]
+name = "backend"
+version = "0.1.0"
+description = "Backend services for Sputnik"
+authors = ["Nicialy <Nicialy@yandex.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+alembic = "^1.11.2"
+sqlalchemy = {version = "^2.0.19", extras = ["asyncio"]}
+celery = {version = "^5.3.1", extras = ["redis"]}
+pydantic = {extras = ["email"], version = "^2.3.0"}
+httpx = "^0.24.1"
+pytest-mock = "^3.11.1"
+freezegun = "^1.2.2"
+pytz = "^2023.3"
+passlib = "^1.7.4"
+cryptography = "^41.0.3"
+bcrypt = "^4.0.1"
+python-jose = "^3.3.0"
+asyncpg = "^0.28.0"
+python-multipart = "^0.0.6"
+fastapi = "^0.101.0"
+pytest-asyncio = "^0.21.1"
+uvicorn = {version = "^0.23.2", extras = ["standart"]}
+pydantic-settings = "^2.0.2"
+aiologger = "^0.7.0"
+factory-boy = "^3.3.0"
+pytest-lambda = "^2.2.0"
+pillow = "^10.0.0"
+async-factory-boy = "^1.0.0"
+utcnow = "^0.3.6"
+influxdb-client = {version = "^1.37.0", extras = ["async"]}
+redis = "^5.0.0"
+beanie = "^1.22.6"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120

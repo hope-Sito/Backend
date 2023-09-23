@@ -1,0 +1,32 @@
+version: '3.7'
+services:
+  redis:
+    image: 'bitnami/redis:6.2.13'
+    expose:
+      - 6379
+    restart: always
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    networks:
+      - jira-jira
+
+  mongodb:
+    container_name: "mongodb"
+    image: bitnami/mongodb
+    hostname: mongodb
+    restart: always
+    volumes:
+      - mongo-data2:/bitnami/mongodb
+    environment:
+      - MONGODB_ROOT_USER=aboba
+      - MONGODB_ROOT_PASSWORD=aboba
+      - MONGODB_DATABASE=medvezhiy-ugol
+    ports:
+      - 27017:27017
+    networks:
+      - jira-jira
+networks:
+  jira-jira:
+    name: jira-jira-networks
+volumes:
+  mongo-data2:
