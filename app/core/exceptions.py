@@ -63,3 +63,8 @@ class DoNotUsuRefreshToken(CommonException):
 class Unauthorized(CommonException):
     def __init__(self) -> None:
         super().__init__(status.HTTP_401_UNAUTHORIZED, "Не авторизован")
+
+
+class SprintNotFoundError(CommonException):
+    def __init__(self, error: str) -> None:
+        super().__init__(status.HTTP_404_NOT_FOUND, error)
