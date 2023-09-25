@@ -1,3 +1,4 @@
-from .schemas import Role, UserAssignedWorkplace
+from .router import router
+from .schemas import Workplace
 
-__all__ = ["UserAssignedWorkplace", "Role", "router"]
+__all__ = ["router", "Workplace"]

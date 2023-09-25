@@ -68,3 +68,8 @@ class Unauthorized(CommonException):
 class SprintNotFoundError(CommonException):
     def __init__(self, error: str) -> None:
         super().__init__(status.HTTP_404_NOT_FOUND, error)
+
+
+class WorkplaceNotFoundError(CommonException):
+    def __init__(self, error: str) -> None:
+        super().__init__(status.HTTP_404_NOT_FOUND, error)

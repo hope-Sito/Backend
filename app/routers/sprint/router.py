@@ -1,6 +1,6 @@
 from uuid import UUID
 
-from app.auth.oauth2 import admin, guest
+from app.auth.roles import admin, guest
 from app.core.exceptions import SprintNotFoundError
 from app.routers.auth import User
 from fastapi import APIRouter, Body, Depends, Path, status

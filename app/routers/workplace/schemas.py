@@ -1,17 +1,18 @@
-from enum import StrEnum
-from uuid import UUID
+from typing import Optional
+from uuid import UUID, uuid4
 
 from beanie import Document
-from beanie.odm.documents import PydanticObjectId
+from pydantic import BaseModel, Field
 
 
-class Role(StrEnum):
-    ADMIN = "ADMIN"
-    MEMBER = "MEMBER"
-    GUEST = "GUEST"
+class WorkplaceCreation(BaseModel):
+    name: str
+    description: Optional[str] = None
 
 
-class UserAssignedWorkplace(Document):
-    user_id: PydanticObjectId
-    workplace_id: UUID
-    role: Role
+class Workplace(Document, WorkplaceCreation):
+    id: UUID = Field(default=uuid4())
+
+
+class SuccessfulResponse(BaseModel):
+    details: str = Field("Выполнено", title="Статус операции")

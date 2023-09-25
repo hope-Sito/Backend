@@ -3,7 +3,7 @@ from uuid import UUID
 from app.auth.jwt_token import decode_token
 from app.core.exceptions import ForbiddenException, Unauthorized
 from app.routers.auth.schemas import User
-from app.routers.workplace import Role, UserAssignedWorkplace
+from app.routers.userassignedworkplace.schemas import Role, UserAssignedWorkplace
 from fastapi import Depends, Path
 from fastapi.security import HTTPBearer
 
@@ -14,7 +14,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme)) -> str:
     token = decode_token(token.credentials)
     user = await User.by_email(token.email)
     if not user:
-        raise Unauthorized
+        raise Unauthorized()
     return user
 
 
@@ -30,12 +30,4 @@ class RoleChecker:
         )
         if workplace is not None and workplace.role in self.role:
             return user
-        raise ForbiddenException
-
-
-# доступно только админу
-admin: RoleChecker = RoleChecker(Role.ADMIN)
-# доступно админам и членам
-member: RoleChecker = RoleChecker([Role.MEMBER, Role.GUEST])
-# доступно админам, членам и гостям
-guest: RoleChecker = RoleChecker([Role.GUEST, Role.MEMBER, Role.MEMBER])
+        raise ForbiddenException()
