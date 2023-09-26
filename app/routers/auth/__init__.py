@@ -1,4 +1,5 @@
 from .router import router
-from .schemas import SuccessfulResponse, User
+from .schemas import User, UserAssignedWorkplace
 
-__all__ = ["User", "router", "SuccessfulResponse"]
+__all__ = ["User", "UserAssignedWorkplace", "router"]
+
