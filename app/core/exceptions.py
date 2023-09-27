@@ -70,12 +70,6 @@ class SprintNotFoundError(CommonException):
         super().__init__(status.HTTP_404_NOT_FOUND, error)
 
 
-<<<<<<< HEAD
-class WorkplaceNotFoundError(CommonException):
-    def __init__(self, error: str) -> None:
-        super().__init__(status.HTTP_404_NOT_FOUND, error)
-=======
 class ValidationError(CommonException):
     def __init__(self, error: str) -> None:
         super().__init__(status.HTTP_400_BAD_REQUEST, error)
->>>>>>> origin/dev
