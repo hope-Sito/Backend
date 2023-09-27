@@ -1,10 +1,10 @@
 from uuid import UUID
 
-from app.auth.oauth2 import get_current_user, admin, guest
-from app.core.exceptions import WorkplaceNotFoundError
-from app.routers.auth.schemas import User, SuccessfulResponse
-from app.routers.userassignedworkplace.schemas import Role, UserAssignedWorkplace
 from fastapi import APIRouter, Body, Depends, Path, status
+
+from app.auth.oauth2 import admin, get_current_user, guest
+from app.core.exceptions import WorkplaceNotFoundError
+from app.routers.auth.schemas import Role, SuccessfulResponse, User, UserAssignedWorkplace
 
 from .schemas import Workplace, WorkplaceCreation
 
@@ -39,7 +39,7 @@ async def editWorkplace(
     return SuccessfulResponse()
 
 
-@router.delete("/workplaces/{workplace_id}", response_model=SuccessfulResponse, status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/workplaces/{workplace_id}", response_model=None, status_code=status.HTTP_204_NO_CONTENT)
 async def deleteWorkplace(workplace_id: UUID = Path(...), user: User = Depends(admin)):
     workplace = await Workplace.find(Workplace.id == workplace_id).first_or_none()
     if workplace is None:
@@ -50,4 +50,4 @@ async def deleteWorkplace(workplace_id: UUID = Path(...), user: User = Depends(a
     for userAssignedWorkplace in userAssignedWorkplaces:
         await userAssignedWorkplace.delete()
     await workplace.delete()
-    return SuccessfulResponse()
+    return None
