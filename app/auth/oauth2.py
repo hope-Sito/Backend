@@ -1,12 +1,12 @@
 from typing import List
 from uuid import UUID
 
-from app.auth.jwt_token import decode_token
-from app.core.exceptions import ForbiddenException, Unauthorized
-from app.routers.auth.schemas import Role, User, UserAssignedWorkplace
 from fastapi import Depends, Path
 from fastapi.security import HTTPBearer
 
+from app.auth.jwt_token import decode_token
+from app.core.exceptions import ForbiddenException, Unauthorized
+from app.routers.auth.schemas import Role, User, UserAssignedWorkplace
 
 oauth2_scheme = HTTPBearer()
 
@@ -37,6 +37,6 @@ class RoleChecker:
 # доступно только админу
 admin: RoleChecker = RoleChecker([Role.ADMIN])
 # доступно админам и членам
-member: RoleChecker = RoleChecker([Role.MEMBER, Role.GUEST])
+member: RoleChecker = RoleChecker([Role.MEMBER, Role.ADMIN])
 # доступно админам, членам и гостям
-guest: RoleChecker = RoleChecker([Role.GUEST, Role.MEMBER, Role.MEMBER])
+guest: RoleChecker = RoleChecker([Role.GUEST, Role.MEMBER, Role.ADMIN])
